@@ -1,4 +1,10 @@
-## Hi there 👋
+## Who I am
+
+Honestly I am here because I invent things. I have been building, manipulating, and learning how things work in the world around me. flavored by interests at the given time I build solutions to help better my life and the life of others. From legos and game editing software to coding and programming, my mind is wired to solve puzzles and build processes that maximize efficiency, just never at the expense of the individual involved. I build solutions that allow humans to work smarter and avoid burnout. Bettering processes that are mental, mechanical, or digital for humanity as a whole. 
+
+With AI as an extension of my mind the sky is the limit, the ideas that form constantly in my mind now have a bridge they can use to reach fruition, the only barrier left is time itself.
+
+## What I do:
 
 I study how language models fail: where they drift, where they can be talked
 out of their guardrails, and how to measure it. A decade of programming
