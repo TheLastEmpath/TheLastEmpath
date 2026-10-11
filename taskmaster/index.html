@@ -7,7 +7,7 @@
 <style>
   :root{
     --bg:#0e0b1f; --panel:#181332; --panel2:#221b45; --ink:#f4f0ff; --mute:#9a90c8;
-    --pink:#ff3d9a; --cyan:#27e6ff; --lime:#b6ff3b; --gold:#ffc83d; --line:#3a2f70;
+    --purple:#b57bff; --pink:#ff3d9a; --cyan:#27e6ff; --lime:#b6ff3b; --gold:#ffc83d; --line:#3a2f70;
     --shadow:0 0 0 2px var(--line), 6px 6px 0 #05030f;
   }
   @media (prefers-color-scheme: light){
@@ -50,9 +50,11 @@
   .tools input{flex:1;min-width:150px}
   .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
   .chip{background:var(--panel2);border:2px solid var(--line);border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800;cursor:pointer;color:var(--mute);user-select:none}
-  .chip.on{background:var(--pink);border-color:var(--pink);color:#fff}
+  .chip{color:var(--c,var(--purple));border-color:var(--c,var(--line))}
+  .chip.on{background:var(--c,var(--purple));border-color:var(--c,var(--purple));color:#10092b}
   .group{margin-bottom:18px}
-  .group h3{margin:0 0 8px;font-size:14px;letter-spacing:1.5px;color:var(--gold);display:flex;gap:8px;align-items:center}
+  .group h3{margin:0 0 8px;font-size:14px;letter-spacing:1.5px;color:var(--c,var(--purple));display:flex;gap:8px;align-items:center}
+  .group h3 input[type=color]{appearance:none;border:0;background:none;width:20px;height:20px;padding:0;cursor:pointer}
   .group h3 span{background:var(--panel2);border-radius:99px;padding:0 9px;color:var(--ink);font-size:12px}
   .task{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:2px solid var(--line);border-radius:12px;padding:9px 11px;margin-bottom:8px;
     animation:pop .35s cubic-bezier(.2,1.5,.4,1) both;transition:.15s}
@@ -127,8 +129,11 @@
 (() => {
   const KEY = 'taskmaster.v1';
   const $ = s => document.querySelector(s);
-  let S = { items: [], xp: 0 };
+  let S = { items: [], xp: 0, colors: {} };
+  const DEFAULT_COLOR = '#b57bff';
   try { const r = localStorage.getItem(KEY); if (r) S = JSON.parse(r); } catch (e) {}
+  S.colors ||= {};
+  const colorOf = src => S.colors[src] || DEFAULT_COLOR;
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
 
   let filter = 'ALL', query = '', showDone = true;
@@ -151,6 +156,7 @@
 
   function sync(source, parsed) {
     let added = 0, removed = 0;
+    S.colors[source] ||= DEFAULT_COLOR;
     const want = new Map(parsed.map(p => [norm(p.text), p]));
     const before = S.items.length;
     S.items = S.items.filter(i => i.src !== source || i.done || want.has(norm(i.text)));
@@ -179,7 +185,7 @@
     const srcs = ['ALL', ...new Set(S.items.map(i => i.src))];
     if (!srcs.includes(filter)) filter = 'ALL';
     $('#chips').innerHTML = srcs.map(s =>
-      `<span class="chip ${s === filter ? 'on' : ''}" data-s="${esc(s)}">${esc(s)}</span>`).join('');
+      `<span class="chip ${s === filter ? 'on' : ''}" data-s="${esc(s)}" style="--c:${s === 'ALL' ? DEFAULT_COLOR : colorOf(s)}">${esc(s)}</span>`).join('');
 
     const qn = query.toLowerCase();
     const vis = S.items.filter(i => (filter === 'ALL' || i.src === filter) && (!qn || i.text.toLowerCase().includes(qn)));
@@ -191,7 +197,7 @@
     vis.forEach(i => (groups[i.src] ||= []).push(i));
     $('#list').innerHTML = Object.entries(groups).map(([src, arr]) => {
       arr.sort((a, b) => a.done - b.done || b.star - a.star || a.at - b.at);
-      return `<div class="group"><h3>📜 ${esc(src)} <span>${arr.filter(a => !a.done).length} open</span></h3>` +
+      return `<div class="group" style="--c:${colorOf(src)}"><h3>📜 ${esc(src)} <input type="color" data-src="${esc(src)}" value="${colorOf(src)}" title="Change color"> <span>${arr.filter(a => !a.done).length} open</span></h3>` +
         arr.map(i => `<div class="task ${i.star ? 'star' : ''} ${i.done ? 'done' : ''}" data-id="${i.id}">
           <input type="checkbox" ${i.done ? 'checked' : ''}>
           <div class="t">${esc(i.text)}${i.tag ? `<span class="tag"># ${esc(i.tag)}</span>` : ''}</div>
@@ -221,10 +227,12 @@
     } else return;
     save(); render();
   });
+  $('#list').addEventListener('change', e => { if (e.target.type === 'color') { S.colors[e.target.dataset.src] = e.target.value; save(); render(); } });
   $('#chips').addEventListener('click', e => { if (e.target.dataset.s) { filter = e.target.dataset.s; render(); } });
   $('#q').addEventListener('input', e => { query = e.target.value; render(); });
   $('#quick').addEventListener('keydown', e => {
     if (e.key !== 'Enter' || !e.target.value.trim()) return;
+    S.colors['Quick Add'] ||= DEFAULT_COLOR;
     S.items.push({ id: uid(), text: e.target.value.trim(), tag: '', src: 'Quick Add', done: false, star: false, at: Date.now() });
     e.target.value = ''; save(); render();
   });
