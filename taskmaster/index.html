@@ -7,7 +7,7 @@
 <style>
   :root{
     --bg:#0e0b1f; --panel:#181332; --panel2:#221b45; --ink:#f4f0ff; --mute:#9a90c8;
-    --purple:#b57bff; --pink:#ff3d9a; --cyan:#27e6ff; --lime:#b6ff3b; --gold:#ffc83d; --line:#3a2f70;
+    --purple:#bd40ff; --pink:#ff3d9a; --cyan:#27e6ff; --lime:#b6ff3b; --gold:#ffc83d; --line:#3a2f70;
     --shadow:0 0 0 2px var(--line), 6px 6px 0 #05030f;
   }
   @media (prefers-color-scheme: light){
@@ -50,10 +50,10 @@
   .tools input{flex:1;min-width:150px}
   .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
   .chip{background:var(--panel2);border:2px solid var(--line);border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800;cursor:pointer;color:var(--mute);user-select:none}
-  .chip{color:var(--c,var(--purple));border-color:var(--c,var(--line))}
-  .chip.on{background:var(--c,var(--purple));border-color:var(--c,var(--purple));color:#10092b}
+  .chip{color:var(--c,var(--purple));text-shadow:0 0 10px color-mix(in srgb,var(--c,var(--purple)) 55%,transparent);border-color:var(--c,var(--line))}
+  .chip.on{background:var(--c,var(--purple));border-color:var(--c,var(--purple));text-shadow:0 0 10px color-mix(in srgb,var(--c,var(--purple)) 55%,transparent);color:#10092b}
   .group{margin-bottom:18px}
-  .group h3{margin:0 0 8px;font-size:14px;letter-spacing:1.5px;color:var(--c,var(--purple));display:flex;gap:8px;align-items:center}
+  .group h3{margin:0 0 8px;font-size:14px;letter-spacing:1.5px;color:var(--c,var(--purple));text-shadow:0 0 10px color-mix(in srgb,var(--c,var(--purple)) 55%,transparent);display:flex;gap:8px;align-items:center}
   .group h3 input[type=color]{appearance:none;border:0;background:none;width:20px;height:20px;padding:0;cursor:pointer}
   .group h3 span{background:var(--panel2);border-radius:99px;padding:0 9px;color:var(--ink);font-size:12px}
   .task{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:2px solid var(--line);border-radius:12px;padding:9px 11px;margin-bottom:8px;
@@ -130,10 +130,10 @@
   const KEY = 'taskmaster.v1';
   const $ = s => document.querySelector(s);
   let S = { items: [], xp: 0, colors: {} };
-  const DEFAULT_COLOR = '#b57bff';
+  const DEFAULT_COLOR = '#bd40ff';
   try { const r = localStorage.getItem(KEY); if (r) S = JSON.parse(r); } catch (e) {}
   S.colors ||= {};
-  const colorOf = src => S.colors[src] || DEFAULT_COLOR;
+  const colorOf = src => (S.colors[src] && S.colors[src] !== '#b57bff') ? S.colors[src] : DEFAULT_COLOR;
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
 
   let filter = 'ALL', query = '', showDone = true;
