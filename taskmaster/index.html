@@ -6,16 +6,13 @@
 <title>TaskMaster</title>
 <style>
   :root{
-    --bg:#0e0b1f; --panel:#181332; --panel2:#221b45; --ink:#f4f0ff; --mute:#9a90c8;
-    --purple:#bd40ff; --pink:#ff3d9a; --cyan:#27e6ff; --lime:#b6ff3b; --gold:#ffc83d; --line:#3a2f70;
+    --bg:#06050c; --panel:#101014; --panel2:#18181e; --ink:#e6e6ea; --mute:#8d8d96;
+    --green:#52e34e; --purple:#52e34e; --pink:#3fcf4b; --cyan:#52e34e; --lime:#52e34e; --gold:#9dff8a; --line:#1f5a2a;
     --shadow:0 0 0 2px var(--line), 6px 6px 0 #05030f;
-  }
-  @media (prefers-color-scheme: light){
-    :root{ --bg:#f6f1ff; --panel:#fff; --panel2:#efe7ff; --ink:#1b1340; --mute:#6b5fa0; --line:#cdbff5; --shadow:0 0 0 2px var(--line), 6px 6px 0 #d9ccff; }
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 ui-rounded,"Trebuchet MS",system-ui,sans-serif;
-    background-image:radial-gradient(circle at 20% -10%,#3b1f7a55,transparent 50%),radial-gradient(circle at 90% 10%,#00e5ff22,transparent 45%);
+    background-image:radial-gradient(circle at 20% -10%,#52e34e1f,transparent 50%),radial-gradient(circle at 90% 10%,#52e34e12,transparent 45%);
     min-height:100vh}
   .wrap{max-width:1100px;margin:0 auto;padding:20px 16px 60px}
   header{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;margin-bottom:20px}
@@ -42,16 +39,16 @@
   textarea,input[type=text]{width:100%;background:var(--panel2);color:var(--ink);border:2px solid var(--line);border-radius:10px;padding:9px 11px;font:inherit}
   textarea{min-height:90px;resize:vertical;margin-top:10px}
   textarea:focus,input:focus{outline:none;border-color:var(--cyan)}
-  button{font:inherit;font-weight:800;cursor:pointer;border:0;border-radius:10px;padding:9px 14px;color:#10092b;background:var(--lime);box-shadow:3px 3px 0 #05030f;transition:transform .08s}
+  button{font:inherit;font-weight:800;cursor:pointer;border:0;border-radius:10px;padding:9px 14px;color:#06050c;background:var(--lime);box-shadow:3px 3px 0 #05030f;transition:transform .08s}
   button:hover{transform:translate(-1px,-1px)} button:active{transform:translate(3px,3px);box-shadow:none}
-  button.alt{background:var(--cyan)} button.hot{background:var(--pink);color:#fff} button.ghost{background:var(--panel2);color:var(--ink)}
+  button.alt{background:var(--cyan)} button.hot{background:var(--pink);color:#06050c} button.ghost{background:var(--panel2);color:var(--ink)}
   .btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
   .tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;align-items:center}
   .tools input{flex:1;min-width:150px}
   .chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
   .chip{background:var(--panel2);border:2px solid var(--line);border-radius:99px;padding:3px 12px;font-size:13px;font-weight:800;cursor:pointer;color:var(--mute);user-select:none}
   .chip{color:var(--c,var(--purple));text-shadow:0 0 10px color-mix(in srgb,var(--c,var(--purple)) 55%,transparent);border-color:var(--c,var(--line))}
-  .chip.on{background:var(--c,var(--purple));border-color:var(--c,var(--purple));text-shadow:0 0 10px color-mix(in srgb,var(--c,var(--purple)) 55%,transparent);color:#10092b}
+  .chip.on{background:var(--c,var(--purple));border-color:var(--c,var(--purple));text-shadow:0 0 10px color-mix(in srgb,var(--c,var(--purple)) 55%,transparent);color:#06050c}
   .group{margin-bottom:18px}
   .group h3{margin:0 0 8px;font-size:14px;letter-spacing:1.5px;color:var(--c,var(--purple));text-shadow:0 0 10px color-mix(in srgb,var(--c,var(--purple)) 55%,transparent);display:flex;gap:8px;align-items:center}
   .group h3 input[type=color]{appearance:none;border:0;background:none;width:20px;height:20px;padding:0;cursor:pointer}
@@ -59,12 +56,12 @@
   .task{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:2px solid var(--line);border-radius:12px;padding:9px 11px;margin-bottom:8px;
     animation:pop .35s cubic-bezier(.2,1.5,.4,1) both;transition:.15s}
   .task:hover{border-color:var(--cyan);transform:translateX(3px)}
-  .task.star{border-color:var(--gold);box-shadow:0 0 14px #ffc83d44}
+  .task.star{border-color:var(--gold);box-shadow:0 0 14px #52e34e44}
   .task.done{opacity:.55} .task.done .t{text-decoration:line-through}
   @keyframes pop{from{transform:scale(.85) translateY(8px);opacity:0}}
   .task input{appearance:none;width:24px;height:24px;flex:none;margin:1px 0 0;border:3px solid var(--cyan);border-radius:7px;cursor:pointer;display:grid;place-content:center}
   .task input:checked{background:var(--lime);border-color:var(--lime)}
-  .task input:checked::after{content:"✔";color:#10092b;font-size:16px;font-weight:900}
+  .task input:checked::after{content:"✔";color:#06050c;font-size:16px;font-weight:900}
   .t{flex:1;word-break:break-word}
   .tag{font-size:11px;font-weight:800;color:var(--mute);letter-spacing:1px;display:block}
   .ic{background:none;box-shadow:none;padding:2px 6px;font-size:18px;color:var(--mute)}
@@ -73,7 +70,7 @@
   .empty em{display:block;font-size:56px;font-style:normal}
   small.hint{color:var(--mute);display:block;margin-top:8px}
   canvas#fx{position:fixed;inset:0;pointer-events:none;z-index:99}
-  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--gold);color:#10092b;font-weight:900;padding:10px 20px;border-radius:12px;box-shadow:4px 4px 0 #05030f;z-index:100;animation:pop .3s both}
+  .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--gold);color:#06050c;font-weight:900;padding:10px 20px;border-radius:12px;box-shadow:4px 4px 0 #05030f;z-index:100;animation:pop .3s both}
 </style>
 </head>
 <body>
@@ -130,10 +127,10 @@
   const KEY = 'taskmaster.v1';
   const $ = s => document.querySelector(s);
   let S = { items: [], xp: 0, colors: {} };
-  const DEFAULT_COLOR = '#bd40ff';
+  const DEFAULT_COLOR = '#52e34e';
   try { const r = localStorage.getItem(KEY); if (r) S = JSON.parse(r); } catch (e) {}
   S.colors ||= {};
-  const colorOf = src => (S.colors[src] && S.colors[src] !== '#b57bff') ? S.colors[src] : DEFAULT_COLOR;
+  const colorOf = src => (S.colors[src] && S.colors[src] !== '#bd40ff' && S.colors[src] !== '#b57bff') ? S.colors[src] : DEFAULT_COLOR;
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
 
   let filter = 'ALL', query = '', showDone = true;
@@ -270,7 +267,7 @@
   const cv = $('#fx'), cx = cv.getContext('2d'); let parts = [];
   const fit = () => { cv.width = innerWidth; cv.height = innerHeight; }; fit(); addEventListener('resize', fit);
   function boom(x, y, n = 40) {
-    const cols = ['#ff3d9a', '#27e6ff', '#b6ff3b', '#ffc83d', '#fff'];
+    const cols = ['#52e34e', '#3fcf4b', '#9dff8a', '#b6ff3b', '#fff'];
     for (let i = 0; i < n; i++) parts.push({ x, y, vx: (Math.random() - .5) * 12, vy: Math.random() * -11 - 2, r: 3 + Math.random() * 4, c: cols[i % 5], l: 70 + Math.random() * 30 });
     if (parts.length === n) tick();
   }

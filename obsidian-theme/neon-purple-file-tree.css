@@ -1,37 +1,42 @@
 /* Neon Purple File Tree
-   Colors every file and folder name in Obsidian's file explorer neon purple (#bd40ff),
-   sampled from the _Index page. Applies to new files automatically, no per-file setup.
-   Install: copy to <vault>/.obsidian/snippets/ then Settings > Appearance > CSS snippets > enable. */
+   Colors every file and folder name in Obsidian's file explorer neon purple (#bd40ff).
+   Uses !important and several selectors so themes can't override it. New files pick it up automatically.
+   Install: copy to <vault>/.obsidian/snippets/ then Settings > Appearance > CSS snippets > refresh > enable.
+   Then press Cmd+R (or restart Obsidian) if names stay gray. */
 
-:root {
+body {
   --neon-purple: #bd40ff;
   --neon-purple-glow: rgba(189, 64, 255, 0.55);
 }
 
-/* file + folder names in the tree */
+/* file + folder names (old and new Obsidian class names) */
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title-content,
+.workspace-leaf-content[data-type="file-explorer"] .nav-folder-title-content,
+.workspace-leaf-content[data-type="file-explorer"] .tree-item-inner,
 .nav-file-title-content,
 .nav-folder-title-content {
-  color: var(--neon-purple);
-  text-shadow: 0 0 8px var(--neon-purple-glow);
+  color: var(--neon-purple) !important;
+  text-shadow: 0 0 8px var(--neon-purple-glow) !important;
 }
 
-/* folder collapse arrows */
-.nav-folder-collapse-indicator,
-.nav-folder-collapse-indicator svg {
-  color: var(--neon-purple);
+/* folder arrows */
+.workspace-leaf-content[data-type="file-explorer"] .nav-folder-collapse-indicator,
+.workspace-leaf-content[data-type="file-explorer"] .tree-item-icon,
+.workspace-leaf-content[data-type="file-explorer"] .collapse-icon svg {
+  color: var(--neon-purple) !important;
 }
 
 /* hover */
-.nav-file-title:hover .nav-file-title-content,
-.nav-folder-title:hover .nav-folder-title-content {
-  color: #d98bff;
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title:hover .nav-file-title-content,
+.workspace-leaf-content[data-type="file-explorer"] .nav-folder-title:hover .nav-folder-title-content {
+  color: #d98bff !important;
 }
 
-/* the open file: brighter text, purple edge on the row */
-.nav-file-title.is-active {
-  box-shadow: inset 3px 0 0 var(--neon-purple);
+/* open/active file: brighter text + purple edge */
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active {
+  box-shadow: inset 3px 0 0 var(--neon-purple) !important;
 }
-.nav-file-title.is-active .nav-file-title-content {
-  color: #e2a8ff;
-  text-shadow: 0 0 12px var(--neon-purple-glow);
+.workspace-leaf-content[data-type="file-explorer"] .nav-file-title.is-active .nav-file-title-content {
+  color: #e2a8ff !important;
+  text-shadow: 0 0 12px var(--neon-purple-glow) !important;
 }
