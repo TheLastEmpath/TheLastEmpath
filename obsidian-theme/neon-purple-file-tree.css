@@ -1,0 +1,37 @@
+/* Neon Purple File Tree
+   Colors every file and folder name in Obsidian's file explorer neon purple (#bd40ff),
+   sampled from the _Index page. Applies to new files automatically, no per-file setup.
+   Install: copy to <vault>/.obsidian/snippets/ then Settings > Appearance > CSS snippets > enable. */
+
+:root {
+  --neon-purple: #bd40ff;
+  --neon-purple-glow: rgba(189, 64, 255, 0.55);
+}
+
+/* file + folder names in the tree */
+.nav-file-title-content,
+.nav-folder-title-content {
+  color: var(--neon-purple);
+  text-shadow: 0 0 8px var(--neon-purple-glow);
+}
+
+/* folder collapse arrows */
+.nav-folder-collapse-indicator,
+.nav-folder-collapse-indicator svg {
+  color: var(--neon-purple);
+}
+
+/* hover */
+.nav-file-title:hover .nav-file-title-content,
+.nav-folder-title:hover .nav-folder-title-content {
+  color: #d98bff;
+}
+
+/* the open file: brighter text, purple edge on the row */
+.nav-file-title.is-active {
+  box-shadow: inset 3px 0 0 var(--neon-purple);
+}
+.nav-file-title.is-active .nav-file-title-content {
+  color: #e2a8ff;
+  text-shadow: 0 0 12px var(--neon-purple-glow);
+}
