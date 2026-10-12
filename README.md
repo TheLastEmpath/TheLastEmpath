@@ -42,7 +42,7 @@ be published here.
 
 ## Links 
 
-www.linkedin.com/in/profile-089208355
+
 
 
 
