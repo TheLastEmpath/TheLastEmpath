@@ -1,16 +1,16 @@
 ## Who I am
 
-Honestly I am here because I invent things. I have been building, manipulating, and learning how things work in the world around me. flavored by interests at the given time I build solutions to help better my life and the life of others. From legos and game editing software to coding and programming, my mind is wired to solve puzzles and build processes that maximize efficiency, just never at the expense of the individual involved. I build solutions that allow humans to work smarter and avoid burnout. Bettering processes that are mental, mechanical, or digital for humanity as a whole. 
+Honestly I am here because I invent things. I have been building, manipulating, and learning how things work in the world around me approaching everything with an analytical mind since I was quite young. flavored by personal albeit creative interests at any given time, I build solutions to help better my life and the life of others. From legos and game editing software to coding and programming, my mind is wired to solve puzzles and build processes that maximize efficiency, but never at the expense of the individual involved. I build solutions that allow humans to work smarter and avoid cognitive burnout, bettering processes that are mental, mechanical, or digital for humanity as a whole. 
 
-With AI as an extension of my mind the sky is the limit, the ideas that form constantly in my mind now have a bridge they can use to reach fruition, the only barrier left is time itself.
+With AI as an extension of my mind the sky is the limit, the ideas that form constantly in my mind now have a seamless bridge they can use to reach fruition, the only barrier left it seems is time itself. That being said I find it increasingly difficult to ignore how "called" to the AI alignment issue I feel and ultimately that line of work is where I feel most at home. helping usher in a safe human first world around AI and advocating for safe practices is something I feel I was born to do. Tinkering with projects helps me understand AI on a multitude of levels and I find this depth of research imperative to understanding such technologies.
 
 ## What I do:
 
 I study how language models fail: where they drift, where they can be talked
 out of their guardrails, and how to measure it. A decade of programming
-industrial welding robots taught me to take systems from spec to production.
+industrial welding robots taught me to take systems from speculative data to production.
 My psychology studies (Cognitive Science) help me shape attacks and understand
-human–AI relational behavior.
+human–AI relational behavior that shapes output.
 
 ## What I work on
 
